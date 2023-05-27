@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import express from "express"
+import cors from "cors"
+import router from "../routes/index.routes.js"
+import dotenv from "dotenv"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const app = express()
+dotenv.config()
 
-export default App;
+app.use(express.json())
+app.use(cors())
+app.use(router)
+
+app.listen(process.env.PORT, console.log(`Servidor na porta ${process.env.PORT}`))
