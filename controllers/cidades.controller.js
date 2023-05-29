@@ -65,22 +65,3 @@ export async function getTodas(req, res){
         res.status(500).send(err.message)
     }
 }
-
-export async function getPassagem(req, res){
-
-    try{
-        // const { id } = req.params
-        // const inform = await db.query(`SELECT * FROM urls WHERE id=$1`,[id])
-        // if(inform.rowCount == 0) return res.sendStatus(404)
-
-        // res.status(201).send({
-        //     "id":inform.rows[0].id,
-        //     "shortUrl":inform.rows[0].shortUrl,
-        //     "url":inform.rows[0].url
-        // })
-        res.sendStatus(301)
-    }
-    catch(err){
-        res.send(500).status(err.message)
-    }
-}

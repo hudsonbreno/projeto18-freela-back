@@ -12,6 +12,7 @@ CREATE TABLE "companhia"(
 CREATE TABLE "hoteis"(
     "hotelId" SERIAL PRIMARY KEY,
     "fotoId" INT,
+    "cidadeId" INT,
     "nomeHotel" TEXT,
     "caracteristicas" TEXT,
     "comodidades" TEXT,
@@ -60,9 +61,10 @@ INSERT INTO "companhia"("companhiaNome") VALUES
 ("LATAM"),
 ("TAP");
 
-INSERT INTO "hoteis"("fotoId","cidadeId""nomeHotel","caracteristicas","comodidades","valor_dia") VALUES
-(1, 'Hotel da tiazinha', 'Possui otimo espaço', 'piscina, area de churrasco', 200, 1),
-(2, 'Hotelzinho', 'tem jardim', 'quartos', 50, 2);
+
+INSERT INTO "hoteis"("fotoId","cidadeId","nomeHotel","caracteristicas","comodidades","valor_dia") VALUES
+(1,1, 'Hotel da tiazinha', 'Possui otimo espaço', 'piscina, area de churrasco', 200),
+(2,2, 'Hotelzinho', 'tem jardim', 'quartos', 50);
 
 INSERT INTO "viagem"("cidadeDestinoId","cidadeOrigemId","horarioPartida","horarioPrevista","preco","companhiaId")
 VALUES

@@ -2,42 +2,17 @@ import { db } from "../database/database.connection.js"
 
 export async function getHoteis(req, res){
     try{
-        // const { url } = req.body;
+        const { cidadeNome, min, max } = req.query
+        const dados = await db.query(`
+        SELECT c."cidadeNome", h."nomeHotel", h."caracteristicas", h."comodidades", h."valor_dia"
+        FROM cidades c
+        JOIN hoteis h ON c."cidadeId" = h."cidadeId"
+        WHERE c."cidadeNome" = '${cidadeNome}' AND h.valor_dia>=${min} AND h.valor_dia<=${max};
+        `)
 
-        // const shortUrl = nanoid()
-
-        // const add = await db.query(`INSERT INTO urls(url,"shortUrl", "userId") VALUES ($1, $2, $3)`, [url, shortUrl, res.locals.session.rows[0].userId])
-        // if(!add) return res.send(412)
-
-        // const informId = await db.query(`SELECT * FROM urls WHERE url=$1`,[url])
-
-        // res.status(201).send({
-        //     "id":informId.rows[0].id,
-        //     "shortUrl":shortUrl,
-        //     "userId": res.locals.session.rows[0].userId
-        // })
-        res.sendStatus(305)
+        res.status(200).send(dados.rows)
     }
     catch(err){
         res.status(500).send(err.message)
-    }
-}
-
-export async function getHospedagem(req, res){
-
-    try{
-        // const { id } = req.params
-        // const inform = await db.query(`SELECT * FROM urls WHERE id=$1`,[id])
-        // if(inform.rowCount == 0) return res.sendStatus(404)
-
-        // res.status(201).send({
-        //     "id":inform.rows[0].id,
-        //     "shortUrl":inform.rows[0].shortUrl,
-        //     "url":inform.rows[0].url
-        // })
-        res.sendStatus(301)
-    }
-    catch(err){
-        res.send(500).status(err.message)
     }
 }
