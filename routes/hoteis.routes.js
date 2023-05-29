@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { } from "../controllers/urls.controller.js";
+import { getHoteis, getHospedagem } from "../controllers/hoteis.controller.js";
 
 const hoteisRouter = Router()
 
-hoteisRouter.post("/hoteis", getHoteis)
-hoteisRouter.get("/hospedagem/:id", getHospegagem)
+hoteisRouter.get("/hoteis", getHoteis)
+hoteisRouter.get("/hospedagem/especificar", getHospedagem)
 
 
-export default urlsRouter
+export default hoteisRouter
