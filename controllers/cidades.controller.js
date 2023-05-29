@@ -65,3 +65,18 @@ export async function getTodas(req, res){
         res.status(500).send(err.message)
     }
 }
+
+export async function postViagem(req, res){
+    try{
+        const { cidadeDestinoId, cidadeOrigemId, horarioPartida, horarioPrevista, preco, companhiaId} = req.body
+        const dados = await db.query(`
+        INSERT INTO viagem("cidadeDestinoId","cidadeOrigemId","horarioPartida","horarioPrevista","preco","companhiaId") VALUES
+        (${cidadeDestinoId}, ${cidadeOrigemId}, ${horarioPartida}, ${horarioPrevista}, ${preco}, ${companhiaId})
+        `)
+
+        res.send(201).send(dados)
+    }
+    catch(err){
+        console.log(err.message)
+    }
+}

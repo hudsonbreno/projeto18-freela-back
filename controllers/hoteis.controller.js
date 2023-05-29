@@ -16,3 +16,18 @@ export async function getHoteis(req, res){
         res.status(500).send(err.message)
     }
 }
+
+export async function postHotel(req, res){
+    try{
+        const { fotoId, cidadeId, nomeHotel, caracteristicas, comodidades, valor_dia} = req.body
+        const dados = await db.query(`
+        INSERT INTO "hoteis"("fotoId","cidadeId","nomeHotel","caracteristicas","comodidades","valor_dia") VALUES
+        (${fotoId},${cidadeId}, ${nomeHotel}, ${caracteristicas},${comodidades}, ${valor_dia});
+        `)
+
+        res.send(201).send(dados)
+    }
+    catch(err){
+        console.log(err.message)
+    }
+}
